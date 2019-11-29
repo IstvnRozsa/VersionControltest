@@ -28,16 +28,7 @@ namespace UserMaintenance
             listBox1.DisplayMember = "FullName";
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var u = new User()
-            {
-                Fullname = textBox1.Text
-                
-
-            };
-            users.Add(u);
-        }
+        
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -53,6 +44,17 @@ namespace UserMaintenance
                 }
                 writer.Close();
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            var u = new User()
+            {
+                Fullname = textBox1.Text
+
+
+            };
+            users.Add(u);
         }
     }
 }
