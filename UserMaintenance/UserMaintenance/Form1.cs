@@ -16,6 +16,14 @@ namespace UserMaintenance
     {
         BindingList<User> users = new BindingList<User>();
 
+        void LBReflesh()
+        {
+            listBox1.DataSource = null;
+            listBox1.DataSource = users;
+            listBox1.ValueMember = "ID";
+            listBox1.DisplayMember = "FullName";
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -23,21 +31,12 @@ namespace UserMaintenance
             
             button1.Text = Resource1.Add;
             button2.Text = Resource1.ToFile;
-            listBox1.DataSource = users;
-            listBox1.ValueMember = "ID";
-            listBox1.DisplayMember = "FullName";
+            button3.Text = Resource1.Delete;
+            LBReflesh();
+            
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var u = new User()
-            {
-                Fullname = textBox1.Text
-                
-
-            };
-            users.Add(u);
-        }
+        
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -52,6 +51,26 @@ namespace UserMaintenance
                     writer.WriteLine(item);
                 }
                 writer.Close();
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            var u = new User()
+            {
+                Fullname = textBox1.Text
+
+
+            };
+            users.Add(u);
+            LBReflesh();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem!=null)
+            {
+                users.RemoveAt(listBox1.SelectedIndex);
             }
         }
     }
